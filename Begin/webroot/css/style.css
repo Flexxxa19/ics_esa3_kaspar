@@ -1,0 +1,179 @@
+/*CSS-Datei für esa1_kaspar */
+
+
+body   { 
+  /* Aufgabe 2b CSS: Hintergrundbild einfügen */
+  background-image: url("./images/flagge.jpg");
+  background-size: 100%;
+  background-color: beige;
+}
+
+/* Header*/
+.header {
+    /* Aufgabe 2c CSS: Schriften formatieren */
+    font-family: sans-serif;
+    position: top;
+    font-size: 16px;
+    padding-left: 20px;
+    color: #f8f8f8;
+  }
+
+.navigation {
+    /* Aufgabe 3a CSS: Navigation formatieren*/
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+ul {
+
+  font-size: 16pt;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #716f6f;
+  color: rgb(231, 16, 16);
+  }
+
+li {
+  display: inline;
+  padding-right: 40px;
+}
+
+/* Aufgabe 3c CSS: Ändern Sie die Abstände zwischen den Überschriften und den Blogbeiträgen */
+h2 {
+    padding: 1px;
+}
+
+.blog_beitrag {
+  font-family: Arial, Helvetica, sans-serif;
+  position: relative;
+  font-size: 14px;
+  color: rgb(255, 255, 255);
+  padding-left: 20px;
+}
+
+/* Aufgabe 3b CSS: (c) CSS: Ändern Sie die Abstände zwischen den Überschriften und den Blogbeiträgen */
+#ueberblick_text {
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(255, 255, 255);
+  position: relative;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+#geschichte_text {
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(255, 255, 255);
+  position: relative;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+#politisches_text {
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(255, 255, 255);
+  position: relative;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+#bilder_text {
+  width: 100%;
+  height: 100px;
+  padding: 20px;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  border: 2px solid #353333;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 12px;
+  resize: none;
+}
+
+img {
+  border: 10px solid white;
+}
+
+#klick {
+  width: 100%;
+  height: 100px;
+  padding: 20px;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 4px;
+  position: relative;
+  font-size: 14px;
+  font-weight: bold;
+  color: rgb(16, 230, 73);
+}
+
+#charNum {
+  position: relative;
+  font-size: 20px;
+  color: #5a5757;
+}
+
+#characters_remaining{
+  position: relative;
+  font-size: 20px;
+  color: #5a5757;
+}
+
+#zaehler {
+  width: 100%;
+  height: 100px;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 4px;
+  position: relative;
+  font-size: 20px;
+  color: #f8f8f8;
+}
+
+#mexico_city {
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 75%;
+  height: 100px;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 4px;
+  position: relative;
+  font-size: 20px;
+  font-weight: 400;
+  font-stretch: ultra-expanded;
+  color: #000000;
+}
+
+#image_02{
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 75%;
+  height: 75%
+}
+
+#copyright {
+  font-family: Arial, Helvetica, sans-serif;
+  right: 10px;
+  position: absolute;
+  font-size: 12px;
+  color: gray;
+  padding: 10px;
+}
+
+
+.page-container {
+  background-color: rgb(14, 201, 238);
+  width: 680px;
+  min-height: 400px;
+  padding: 14px;
+  margin: 14px auto;
+}
+
+#city-panel .ref {
+  display: block;
+}

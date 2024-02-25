@@ -1,0 +1,38 @@
+<!doctype html>	
+ <html lang="de">
+ <head>
+    <meta charset="utf-8">
+    <title>CSS-Eigenschaften von HTML-Tags ändern</title>
+  </head>
+  
+  <body>
+    <h1>CSS-Eigenschaften von HTML-Tags ändern</h1>
+   <p id="change" style="font-family: serif;">
+       Hinter eines Baumes Rinde<br>
+       wohnt die Made mit dem Kinde.<br>
+       Sie ist Witwe, denn der Gatte,<br>
+       den sie hatte, fiel vom Blatte.<br>
+       Diente so auf diese Weise<br>
+       einer Ameise als Speise.<br>
+   </p>
+   <div>
+     <input type="button" id="button" value="Schriftart 
+       ändern" onclick="cssChange();" />
+   </div>
+  
+  <!-- Hier beginnt JavaScript -->
+   <script>
+ 	function cssChange(){
+       var change = document.getElementById('change');
+       var button = document.getElementById('button');
+       if(change.style.fontFamily == "serif"){
+          change.style.fontFamily = "sans-serif";
+          button.value = "Schriftart zurücksetzen";
+       }else{
+          change.style.fontFamily = "serif";
+          button.value = "Schriftart ändern";
+       }
+     }
+   </script> 
+ </body>
+ </html>

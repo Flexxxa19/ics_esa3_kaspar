@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="de">
+  <!--Aufgabe 1a und 1b HTML-->
+<head>
+  <meta charset="utf-8" />
+  <title>CDMX</title>
+  <meta name="description" content="Mexico City" />
+  <meta name="keywords" content="Tenochtitlan, Mexico City, Mexiko, DF, Aztec"/>
+  <meta name="author" content="Felix Kaspar" />
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+
+<script src="./js/main.js"></script>
+
+<body> 
+
+  <header class="header">
+  <!--Aufgabe 1c HTML: Anpassen der Sektionen und Bilder-->
+    <h1>CDMX - Ciudad de Mexico</h1>
+
+    <nav class="navigation">
+      <ul>
+        <li><a href="./index.html">Home</a></li>
+        <li><a href="./ueberblick.html">Überblick</a></li>
+        <li><a href="./geschichte.html">Geschichte</a></li>
+        <li><a href="./politisches.html">Politisches</a></li>
+        <li><a href="./images.html">Bilder</a></li>
+        <li><a href="./impressum">Impressum</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Section 1: Überblick-->
+  <section class="blog_beitrag">
+    <h2>Überblick</h2>
+      <!--Aufgabe 2a HTML: Textareas erstellen-->
+    <textarea id="ueberblick_text" name="ueberblick" rows="4" cols="40">
+      Überblick
+    </textarea>
+  </section>
+
+  <!-- Section 2: Geschichte-->
+  <section class="blog_beitrag">
+    <h2>Geschichte</h2>
+    <textarea id="geschichte_text" name="geschichte" rows="4" cols="40">
+      Geschichte
+    </textarea>
+  </section>
+  
+  <!-- Section 3: Politisches-->
+  <section class="blog_beitrag">
+    <h2>Politisches</h2>
+    <textarea id="politisches_text" name="politisches" rows="4" cols="40">
+      Politisches
+    </textarea>
+  </section>
+
+  <!-- Section 4: Bilder-->
+  <section class="blog_beitrag">
+    <h2>¡Hola! Ein paar Bilder von CDMX</h2>
+    <img id="image_01" src="./images/01.png" alt="Tenochtitlan"/>
+    <br />
+    <textarea id="bilder_text" name="bilder" rows="4" cols="40">
+      Bild 1: Tenochtitlan
+    </textarea>
+
+
+  <!-- Textfeld max 500 Zeichen -->
+    <div class="zaehler">
+    <a id="zaehler" href="#" onClick="display('Klick'); return false;">Text ein-/ausblenden</a>
+    <br />
+    <textarea id="Klick" onkeyup="countChar(this)" oninput="countChar(this)" style="display:none" rows="4" cols="50" maxlength="500">
+      Mexico City ist eine wunderschöne Stadt.
+    </textarea>
+    <span id="charNum"></span> 
+    <div id="characters_remaining"> characters remaining </div>
+  </div>
+  </section> 
+
+  <div class="page-container">
+    <h1>Städteauswahl</h1>
+    <section id="city-selector">
+      <span>Stadt: </span>
+      <select>
+        <option value="" disabled selected>Bitte auswählen...</option>
+        <option value="city1.json">Mexico Stadt</option>
+        <option value="city2.json">Tijuana</option>
+        <option value="city3.json">Merida</option>
+        <option value="city4.json">Oaxaca de Juárez</option>
+      </select>
+    </section>
+    <section id="city-panel">
+      <h2 class="title">Keine Stadt ausgewählt.</h2>
+      <a class="ref" target="_blank" href="#">
+        <span class="label"></span>
+      </a>
+      <p class="description"></p>
+    </section>
+  </div>
+
+
+      <!-- Section 5: Ajax Beispiel Stadt auswählen-->
+    <section id="copyright"> 
+      <p> ESA Felix Kaspar </p>
+    </section>
+</body>
+
+</html>
