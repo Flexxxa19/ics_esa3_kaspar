@@ -1,0 +1,88 @@
+ESA 3
+Felix Kaspar 
+
+Einsendeaufgabe 3 – Internetseite JSON, Ajax, Webserver, PHP 
+
+9. Woche: 
+(a) Webserver: Ihr Internetauftritt soll auf einem Webserver zum Laufen gebracht werden. Beschreiben Sie Ihre Konfiguration (Betriebssystem, relevante Pfade, verwendetes Webserver-Paket). Geben Sie für diesen Teil die Konfigurationsänderungen an, die Sie vorgenommen haben. 
+(b) Binden Sie das Ajax-Beispiel in Ihre Webseite auf Ihrem Server ein und ändern Sie die Texte, sodass diese zu Ihrem Internetauftritt passen. Die Dateien zum Ajax-Beispiel finden Sie im Kapitel 7.4 Einfaches Ajax-Beispiel. 
+
+Geben Sie wiederum das Tag in Ihrem Git-Repository in dieser Aufabe an. 
+System: Ubuntu 22.04.3 mit Apache 2.4.41
+
+Befehle: 
+Status: sudo apachectl status 
+Start: sudo apachectl start 
+Stop: sudo apachectl stop 
+Reload: sudo service apache2 restart 
+oder sudo apachectl restart 
+Apache Version: sudo apachectl -V 
+oder cat /usr/sbin/apache2 -v
+
+
+
+16:13 $ /usr/sbin/apache2 -v 
+Server version: Apache/2.4.41 (Ubuntu) 
+Server built:   2023-10-26T13:54:09 
+
+Der Befehl vim /etc/apache2/apache2.conf zeigt mir diese Verzeichnisstruktur an:
+
+       /etc/apache2/ 
+       |-- apache2.conf 
+       |       `--  ports.conf 
+       |-- mods-enabled 
+       |       |-- *.load 
+       |       `-- *.conf 
+       |-- conf-enabled 
+       |       `-- *.conf 
+       `-- sites-enabled 
+               `-- *.conf 
+
+/usr/share/doc/apache2/README.Debian 
+
+sudo a2enmod headers 
+
+Ich nehme folgende Einstellungen in der /etc/apache2/conf-enabled mit vim vor:
+
+ServerTokes Prod 
+TraceEnable Off 
+Header set X-Content-Type-Options: "nosniff" 
+Header set X-Frame-Options: "sameorigin" 
+
+Anschließend lade ich den Server mit dem Befehl sudo service apache2 reload neu, damit die Änderungen wirksam werden.
+
+In der mpm-prefork.conf erhöhe ich den Wert StartServers, da es sich um eine produktive Umgebung handelt, auf 16, genauso den Wert von MinSpareServers .
+Ich erhöhe MaxSpareServers auf den doppelten Wert, also auf 32, da der Server über 4 GB RAM verfügt. Außerdem erhöhe ich MaxRequestWorker auf 1024 und prüfe, ob diese Anzahl im Produktivbetrieb ausreicht und diese Einstellung mit dem vorhandenen Speicherplatz funktioniert, und hebe das ggf. an. Ebenfalls hebe ich die Direktive ServerLimi* auf denselben Wert, also 1024, an. MaxConnectionsPerChild setze ich auf 10.000, um auf eventuelle MemoryLeaks vorbereitet zu sein. 
+In der Section server config erstelle ich die Direktive 
+<Directory "/"> 
+   AllowOverride None 
+</Directory> 
+um .htaccess-Dateien global zu deaktivieren. 
+
+Im Bereich LimitRequest setze ich LimitRequestBody auf 10000000, als 10 MB, da die User nichts hochladen sollen. 
+
+Zur Sicherheit: 
+
+HTTPS wird aktiviert und die SSL-Versionen 1.0 und 1.1 werden deaktiviert, so dass nur TLS 1.2 und 1.3 aktiviert sind. Außerdem werden schwächere Cipher-Suites deaktviert indem die SSLCipherSuite-Zeile in der Datei /etc/httpd/conf/httpd.conf angepasst wird: 
+
+SSLCipherSuite HIGH:MEDIUM:!SSLv3:!kRSA:!RC4:!3DES 
+
+Dort wird auch die TRACE-Methode deaktiviert, um Cross-Site-Tracing Attacken vorzubeugen:
+TraceEnable off 
+
+MIME-Type Sicherheitsrisiken durch Verwechslung der MIME-Typen in der Datei minimieren, indem ich folgendes einfüge: 
+
+Header set X-Content-Type-Options "nosniff" 
+
+Um die X-XSS-Sicherung zu aktivieren  füge ich in die Datei /etc/httpd/conf/httpd.conf diese Zeile ein:
+Header set X-XSS-Protection "1; mode=block" 
+
+X-Frame-Optionen passe ich an, indem ich die folgende Zeile an die Datei /etc/httpd/conf/httpd.conf anhänge:
+
+Header set X-Frame-Options: "SAMEORIGIN" 
+Nun lade ich den Server mit dem Befehl sudo service apache2 reload neu, damit die Änderungen wirksam werden.
+
+Außerdem nutze ich Seiten wie https://www.ssllabs.com/ssltest/ oder https://observatory.mozilla.org/ um zu sehen, ob noch etwaige Sicherheitsrisiken bestehen und ob meine Ciphersuites auf dem aktuellen Stand sind und behebe diese ggf. Diese Überprüfung führe ich regelmäßig durch.
+
+
+
